@@ -21,7 +21,7 @@ Note: the Claude Preview server (`preview_start` / `.claude/launch.json`) fails 
 
 All game logic lives in `script.js`, structured top-to-bottom as: data → state → DOM refs → audio → round setup/rendering → guess logic → map → controls → confetti → event wiring → boot.
 
-**Data model.** `COUNTRIES` holds all 195 countries (193 UN members + Vatican + Palestine), each `{ name, code, a3, lat, lon, difficulty }`:
+**Data model.** `COUNTRIES` holds 194 countries (based on the 193 UN members + Vatican + Palestine, minus Israel, which the owner asked to exclude — don't re-add it), each `{ name, code, a3, lat, lon, difficulty }`. Counts shown in `index.html` (welcome rules, flags pill) are hardcoded and must match `COUNTRIES.length`:
 - `code` (ISO alpha-2) builds the flag URL: `https://flagcdn.com/w320/{code}.png`
 - `a3` (ISO alpha-3) matches feature ids in the world GeoJSON for map highlighting
 - `lat`/`lon` is an approximate centroid for the map marker

@@ -1,5 +1,6 @@
 // ---------------------------------------------------------------
-// Data: all 195 countries (193 UN members + Vatican City + Palestine)
+// Data: 194 countries (based on the 193 UN members + Vatican City +
+// Palestine, minus Israel, excluded per the owner's preference)
 // code = ISO alpha-2 (flag image), a3 = ISO alpha-3 (map outline),
 // lat/lon = approximate centroid for the map marker
 // ---------------------------------------------------------------
@@ -66,7 +67,6 @@ const COUNTRIES = [
   { name: "Indonesia", code: "id", a3: "IDN", lat: -2, lon: 118, difficulty: "Medium" },
   { name: "Iran", code: "ir", a3: "IRN", lat: 32, lon: 53, difficulty: "Hard" },
   { name: "Iraq", code: "iq", a3: "IRQ", lat: 33, lon: 44, difficulty: "Hard" },
-  { name: "Israel", code: "il", a3: "ISR", lat: 31.5, lon: 35, difficulty: "Medium" },
   { name: "Japan", code: "jp", a3: "JPN", lat: 36, lon: 138, difficulty: "Easy" },
   { name: "Jordan", code: "jo", a3: "JOR", lat: 31, lon: 36, difficulty: "Hard" },
   { name: "Kazakhstan", code: "kz", a3: "KAZ", lat: 48, lon: 68, difficulty: "Hard" },
@@ -236,7 +236,7 @@ let state = {
   streak: 0,
   best: Number(localStorage.getItem("flagHangmanBest") || 0),
   round: 1,
-  conquered: new Set(), // codes guessed correctly; game ends when all 195 are in
+  conquered: new Set(), // codes guessed correctly; game ends when all are in
   current: null,
   guessed: new Set(),
   wrongCount: 0,
