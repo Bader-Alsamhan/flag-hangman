@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "flag-hangman",
+      "runtimeExecutable": "/usr/bin/python3",
+      "runtimeArgs": ["/Users/baderalsamhan/Desktop/Claude Projects/Guess Flag Game/.claude/serve.py"],
+      "port": 8934
+    }
+  ]
+}

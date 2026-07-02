@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Flag Hangman 🌍</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="bg-blobs" aria-hidden="true">
+  <span class="blob blob1"></span>
+  <span class="blob blob2"></span>
+  <span class="blob blob3"></span>
+  <span class="blob blob4"></span>
+</div>
+
+<div class="app">
+
+  <header class="topbar">
+    <h1>🌍 Flag Hangman</h1>
+    <div class="stats">
+      <div class="stat-pill score-pill">
+        <span class="stat-label">Score</span>
+        <span class="stat-value" id="score">0</span>
+      </div>
+      <div class="stat-pill streak-pill">
+        <span class="stat-label">Streak</span>
+        <span class="stat-value" id="streak">0</span>
+      </div>
+      <div class="stat-pill best-pill">
+        <span class="stat-label">Best</span>
+        <span class="stat-value" id="best">0</span>
+      </div>
+      <div class="stat-pill round-pill">
+        <span class="stat-label">Round</span>
+        <span class="stat-value" id="round">1</span>
+      </div>
+      <div class="stat-pill flags-pill">
+        <span class="stat-label">Flags</span>
+        <span class="stat-value" id="flags">0/195</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="game-card">
+
+    <div class="left-col">
+      <div class="flag-frame">
+        <img id="flag-img" alt="Guess this flag" />
+        <div class="difficulty-badge" id="difficulty-badge">Easy</div>
+      </div>
+
+      <div class="hangman-wrap">
+        <svg id="hangman-svg" viewBox="0 0 200 220" width="180" height="200">
+          <!-- gallows -->
+          <line x1="10" y1="210" x2="130" y2="210" class="gallow-part base" />
+          <line x1="40" y1="210" x2="40" y2="20" class="gallow-part pole" />
+          <line x1="40" y1="20" x2="130" y2="20" class="gallow-part beam" />
+          <line x1="130" y1="20" x2="130" y2="45" class="gallow-part rope" />
+          <!-- figure parts, hidden by default -->
+          <circle cx="130" cy="60" r="15" class="figure-part part-head" />
+          <line x1="130" y1="75" x2="130" y2="130" class="figure-part part-body" />
+          <line x1="130" y1="90" x2="105" y2="110" class="figure-part part-arm-left" />
+          <line x1="130" y1="90" x2="155" y2="110" class="figure-part part-arm-right" />
+          <line x1="130" y1="130" x2="110" y2="165" class="figure-part part-leg-left" />
+          <line x1="130" y1="130" x2="150" y2="165" class="figure-part part-leg-right" />
+        </svg>
+        <div class="lives-wrap">
+          <span>Lives:</span>
+          <div class="lives-hearts" id="lives-hearts"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="right-col">
+      <div class="message-bar" id="message-bar">Guess the country from its flag! 🚩</div>
+
+      <div class="word-display" id="word-display"></div>
+
+      <div class="keyboard" id="keyboard"></div>
+
+      <div class="controls">
+        <button class="btn hint-btn" id="hint-btn">💡 Hint (-15 pts)</button>
+        <button class="btn map-btn" id="map-btn">🗺️ Map Hint (-25 pts)</button>
+        <button class="btn reveal-btn" id="giveup-btn">🏳️ Give Up</button>
+        <button class="btn next-btn" id="next-btn" disabled>Next Flag ➡️</button>
+      </div>
+    </div>
+
+    <section class="map-panel hidden" id="map-panel">
+      <h2 class="map-title" id="map-title">🗺️ Where in the world?</h2>
+      <div class="map-frame">
+        <svg id="world-svg" viewBox="0 0 720 290" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="World map"></svg>
+        <div class="map-marker" id="map-marker">
+          <span class="marker-ring"></span>
+          <span class="marker-dot"></span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <button class="btn ghost" id="restart-btn">🔄 Restart Game</button>
+    <span class="hint-text">Type on your keyboard or click the letters. Guess the country before the hangman is complete!</span>
+  </footer>
+
+</div>
+
+<div id="confetti-layer"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
