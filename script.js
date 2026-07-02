@@ -417,19 +417,24 @@ function renderWord() {
 
 function renderKeyboard() {
   el.keyboard.innerHTML = "";
-  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  for (const letter of letters) {
-    const btn = document.createElement("button");
-    btn.className = "key-btn";
-    btn.textContent = letter;
-    btn.dataset.letter = letter;
-    if (state.guessed.has(letter)) {
-      btn.disabled = true;
-      const nameLetters = new Set(state.current.name.toUpperCase().split(""));
-      btn.classList.add(nameLetters.has(letter) ? "correct" : "wrong");
+  const rows = ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"];
+  for (const rowLetters of rows) {
+    const row = document.createElement("div");
+    row.className = "kb-row";
+    for (const letter of rowLetters) {
+      const btn = document.createElement("button");
+      btn.className = "key-btn";
+      btn.textContent = letter;
+      btn.dataset.letter = letter;
+      if (state.guessed.has(letter)) {
+        btn.disabled = true;
+        const nameLetters = new Set(state.current.name.toUpperCase().split(""));
+        btn.classList.add(nameLetters.has(letter) ? "correct" : "wrong");
+      }
+      btn.addEventListener("click", () => guessLetter(letter));
+      row.appendChild(btn);
     }
-    btn.addEventListener("click", () => guessLetter(letter));
-    el.keyboard.appendChild(btn);
+    el.keyboard.appendChild(row);
   }
 }
 

@@ -270,9 +270,22 @@ html, body {
 }
 
 .keyboard {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(34px, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 6px;
+}
+/* QWERTY rows: 10/9/7 keys; centering shorter rows gives the
+   familiar keyboard stagger. Key width is a fixed fraction of the
+   keyboard width so every key is the same size in every row. */
+.kb-row {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+.key-btn {
+  flex: 0 0 auto;
+  width: calc(10% - 6px);
+  max-width: 46px;
 }
 .key-btn {
   border: none;
