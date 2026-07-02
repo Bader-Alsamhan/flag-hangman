@@ -34,6 +34,10 @@ All game logic lives in `script.js`, structured top-to-bottom as: data → state
 
 **Hangman.** The SVG figure in `index.html` has 6 `.figure-part` elements revealed in a fixed order by `revealHangmanPart()`; `MAX_WRONG = 6` and the hearts display derive from the same counter.
 
+## Deploying
+
+The game is live on GitHub Pages at https://bader-alsamhan.github.io/flag-hangman/ (repo `Bader-Alsamhan/flag-hangman`, deploys from `main`, takes ~1 minute). GitHub Pages serves with `max-age=600`, so browsers can hold stale files for up to 10 minutes. `index.html` references `style.css?v=N` and `script.js?v=N` — bump both version numbers whenever CSS or JS changes, so cached HTML never mixes with mismatched assets.
+
 ## Gotchas
 
 - Flag aspect ratios vary wildly (Qatar 11:28, Switzerland 1:1, Nepal non-rectangular). The flag frame must keep `object-fit: contain` — `cover` crops flags.
