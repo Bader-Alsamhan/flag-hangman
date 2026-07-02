@@ -488,3 +488,105 @@ html, body {
   .controls { grid-template-columns: repeat(2, 1fr); }
   .controls .btn { padding: 12px 8px; font-size: 0.9rem; }
 }
+
+/* ---------- welcome screen (must stay after mobile block to layer on top) ---------- */
+#welcome-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  background: linear-gradient(135deg, rgba(43,16,85,0.88), rgba(117,151,222,0.88));
+  backdrop-filter: blur(8px);
+  overflow-y: auto;
+}
+#welcome-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.45s ease, visibility 0.45s ease;
+}
+.welcome-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  padding: 34px 30px;
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+  animation: welcome-pop 0.5s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes welcome-pop {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.welcome-globe {
+  font-size: 3.4rem;
+  animation: globe-bob 3s ease-in-out infinite;
+}
+@keyframes globe-bob {
+  0%, 100% { transform: translateY(0) rotate(-6deg); }
+  50% { transform: translateY(-8px) rotate(6deg); }
+}
+.welcome-title {
+  font-family: 'Baloo 2', cursive;
+  font-size: 2.3rem;
+  margin: 6px 0 2px;
+  background: linear-gradient(90deg, var(--purple), var(--pink), var(--orange));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.welcome-tagline {
+  margin: 0 0 10px;
+  color: #5a3d8a;
+  font-weight: 700;
+}
+.welcome-flags {
+  font-size: 1.4rem;
+  letter-spacing: 4px;
+  margin-bottom: 14px;
+}
+.welcome-rules {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 14px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.welcome-rules li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: rgba(123,92,255,0.08);
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--dark);
+}
+.welcome-rules li span { flex-shrink: 0; }
+.welcome-progress {
+  min-height: 1.2em;
+  margin: 0 0 12px;
+  font-weight: 800;
+  color: var(--teal);
+}
+.start-btn {
+  background: linear-gradient(90deg, var(--green), var(--teal));
+  font-size: 1.25rem;
+  padding: 14px 38px;
+  animation: start-pulse 1.6s ease-in-out infinite;
+}
+@keyframes start-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+@media (max-width: 720px) {
+  .welcome-card { padding: 26px 20px; }
+  .welcome-title { font-size: 1.9rem; }
+  .welcome-rules li { font-size: 0.85rem; }
+}

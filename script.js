@@ -276,6 +276,9 @@ function clearProgress() {
 // DOM refs
 // ---------------------------------------------------------------
 const el = {
+  welcomeScreen: document.getElementById("welcome-screen"),
+  welcomeProgress: document.getElementById("welcome-progress"),
+  startBtn: document.getElementById("start-btn"),
   score: document.getElementById("score"),
   streak: document.getElementById("streak"),
   best: document.getElementById("best"),
@@ -735,7 +738,30 @@ el.giveupBtn.addEventListener("click", giveUp);
 el.nextBtn.addEventListener("click", nextRound);
 el.restartBtn.addEventListener("click", restartGame);
 
+// ---------------------------------------------------------------
+// Welcome screen
+// ---------------------------------------------------------------
+function isWelcomeVisible() {
+  return !el.welcomeScreen.classList.contains("hidden");
+}
+
+function setupWelcome() {
+  if (state.conquered.size > 0) {
+    el.welcomeProgress.textContent =
+      `Welcome back! ${state.conquered.size}/${TOTAL_COUNTRIES} flags conquered 🎌`;
+    el.startBtn.textContent = "🚀 Continue Quest";
+  }
+  el.startBtn.addEventListener("click", () => {
+    el.welcomeScreen.classList.add("hidden");
+    playCorrect(); // doubles as the start chime; the click unlocks WebAudio
+  });
+}
+
 window.addEventListener("keydown", (e) => {
+  if (isWelcomeVisible()) {
+    if (e.key === "Enter") el.startBtn.click();
+    return;
+  }
   const letter = e.key.toUpperCase();
   if (letter.length === 1 && letter >= "A" && letter <= "Z") {
     guessLetter(letter);
@@ -748,5 +774,6 @@ window.addEventListener("keydown", (e) => {
 // Boot
 // ---------------------------------------------------------------
 loadProgress();
+setupWelcome();
 loadWorldMap();
 startRound();
