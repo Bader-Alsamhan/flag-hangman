@@ -446,3 +446,23 @@ html, body {
 @keyframes confetti-fall {
   to { transform: translateY(105vh) rotate(600deg); opacity: 1; }
 }
+
+/* ---------- mobile layout (must stay last to override base rules) ---------- */
+@media (max-width: 720px) {
+  .app { padding: 14px 12px 30px; }
+  .game-card { padding: 16px; gap: 16px; }
+  /* flag and hangman sit side by side so the keyboard fits on screen */
+  .left-col {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  .flag-frame { width: 54%; flex-shrink: 0; }
+  .hangman-wrap { flex: 1; min-width: 0; }
+  #hangman-svg { width: 110px; height: 122px; }
+  .lives-hearts { font-size: 0.85rem; }
+  .letter-box { width: 26px; height: 34px; font-size: 1.1rem; }
+  .letter-box.space, .letter-box.punct { width: 12px; }
+  .topbar h1 { font-size: 1.5rem; }
+}
